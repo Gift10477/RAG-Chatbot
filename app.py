@@ -113,6 +113,7 @@ GENERATED_PDF_NAME = "ATS_Resume_CheatSheet.pdf"
 
 # ---------- Utilities ----------
 
+
 def make_pdf(path: str, text: str, title="ATS Resume Cheat Sheet"):
     c = canvas.Canvas(path, pagesize=A4)
     width, height = A4
