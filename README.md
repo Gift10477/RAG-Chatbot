@@ -26,25 +26,6 @@ JD-aware: Paste or upload your JD/CV for tailored, grounded advice
 
 Export: Chat history → PDF
 
-Quickstart
-git clone <your-repo-url>
-cd <repo>
-python -m venv .venv && source .venv/bin/activate  # Windows: .venv\Scripts\activate
-pip install -r requirements.txt
-export OPENAI_API_KEY=sk-...                        # Windows PowerShell: $Env:OPENAI_API_KEY="sk-..."
-streamlit run app.py
-
-
-Open http://localhost:8501
- and try:
-
-“Tailor my CV bullets to this JD: (paste JD)”
-
-“What are ATS-safe formatting rules?”
-
-“Give STAR prompts for handling a missed deadline.”
-
-“Extract ATS keywords for a Sales Development Rep role.”
 
 Tech Stack
 
