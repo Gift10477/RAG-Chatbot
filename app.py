@@ -395,12 +395,7 @@ def load_user_uploads(uploaded_files) -> List[Document]:
 def run_app():
     st.set_page_config(page_title="ATS-Savvy Career Coach (RAG)", page_icon="🧭", layout="wide")
     st.title(" ATS-Savvy Career Coach — Naive RAG")
-    try:
-        _ = resolve_openai_api_key()
-        if not _:
-            st.warning("No OPENAI_API_KEY detected. Set it in the sidebar, .env, st.secrets, or OS env.")
-    except Exception:
-        st.warning("No OPENAI_API_KEY detected. Set it in the sidebar, .env, st.secrets, or OS env.")
+    
 
     with st.sidebar:
         st.header("Settings")
