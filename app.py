@@ -1,4 +1,29 @@
 # app.py — Full workable Streamlit RAG app with robust OPENAI key handling
+# NOTE: requires `pysqlite3-binary` installed in the same env as Streamlit.
+# Install: pip install pysqlite3-binary
+
+# ------------------ Monkeypatch to ensure modern sqlite is used ------------------
+# Must run BEFORE any import that could trigger chromadb/sqlite3 to load.
+try:
+    # Try to use the pysqlite3 module (installed via pysqlite3-binary)
+    import pysqlite3 as _pysqlite3  # this name is provided by pysqlite3-binary
+    import sys
+
+    # Only replace if the stdlib sqlite3 isn't already the desired implementation
+    try:
+        import sqlite3 as _stdlib_sqlite
+        std_ver = getattr(_stdlib_sqlite, "sqlite_version", None)
+    except Exception:
+        std_ver = None
+
+    # Replace stdlib sqlite3 module with pysqlite3 so downstream imports see a newer sqlite
+    if std_ver is None or (isinstance(std_ver, str) and tuple(map(int, std_ver.split("."))) < (3, 35, 0)):
+        sys.modules["sqlite3"] = _pysqlite3
+except Exception:
+    # If anything fails, continue — downstream imports will raise the original, informative error.
+    pass
+
+# ------------------ Regular imports (unchanged) ------------------
 import os
 import io
 from pathlib import Path
